@@ -141,6 +141,8 @@ GO
 
 /***********************************************************************************************************************************************/
 /***Task 1: Add a new column to the Customer Sale View called "Full Name". This should be made up of the Customer Firstname and Last Name columns***/
+/***Using dbo.GetCustomerAmount(c.Id) for creating views gives circular dependency errors some times since the function also uses the view that we are creating.***/
+/***Since it was already there not remocing it.***/
 
 ALTER VIEW CustomerSales AS
 SELECT c.ID As 'Customer Id', c.FirstName, c.LastName, c.FirstName + ' ' + c.LastName As 'Full Name', s.DateSold, p.[Name], p.Price,
@@ -155,6 +157,8 @@ GO
 
 /***********************************************************************************************************************************************/
 /***Task2: Write a function that calculates the persons age using their date of birth. ***/
+/***Input Parameter: CustomerId***/
+/***Returns Age of the Customer***/
 
 CREATE FUNCTION GetCustomerAge
 (
